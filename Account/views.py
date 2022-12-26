@@ -6,6 +6,7 @@ from .mixins import MessageHandler
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.views.generic import View,TemplateView,ListView,DetailView,CreateView,DeleteView,UpdateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 def register(request):
     if request.method == 'POST':
@@ -53,17 +54,20 @@ def otp(request,uid):
 
 @login_required
 def dashboard(request):
+    print("hello;",request.POST)
     return render(request,'Account/dashboard.html')
 
 
 class ProfileFill(CreateView):
     model = Profile
     form_class = ProfileForm
-    # fields = ('person','role','profile_score','mental_score')
+    # fields = ['person','role','profile_score','mental_score']
     template_name = 'Account/dashboard.html'
     success_url = '/dashboard'
     
     def form_valid(self,form):
-        # print("here")
+        print("test",self.request.user)
+        form.instance.person = NewUser.objects.filter(user = self.request.user)[0]
         form.save()
         return super(ProfileFill,self).form_valid(form)
+   

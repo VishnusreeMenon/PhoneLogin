@@ -10,6 +10,8 @@ class NewUser(models.Model):
     phone_number = models.CharField(max_length=10)
     uid = models.UUIDField(default=uuid.uuid4())
     
+    def __str__(self):
+        return self.user.username    
 
 
 class Profile(models.Model):

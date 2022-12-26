@@ -24,5 +24,5 @@ urlpatterns = [
     path('register/',views.register,name='register'),
     path('otp/<uid>/',views.otp),
     # path('dashboard/',views.dashboard),
-    path('dashboard/',login_required(views.ProfileFill.as_view()),)
+    path('dashboard/',login_required(views.ProfileFill.as_view()),name = 'dashboard')
 ]
