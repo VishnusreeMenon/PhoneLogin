@@ -20,9 +20,12 @@ from django.contrib.auth.decorators import login_required
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home),
-    path('login/',views.login_page,name = 'login'),
-    path('register/',views.register,name='register'),
-    path('otp/<uid>/',views.otp),
-    # path('dashboard/',views.dashboard),
-    path('dashboard/',login_required(views.ProfileFill.as_view()),name = 'dashboard')
+    # path('login/',views.login_page,name = 'login'),
+    path('login/',views.LoginApi.as_view(),name = 'login'),
+    # path('register/',views.register,name='register'),
+    # path('otp/<uid>/',views.otp),
+    path('otp/<uid>/',views.OtpApi.as_view()),
+    path('dashboard/',views.ProfileApi.as_view()),
+    path('register/',views.RegistrationApi.as_view(),name = 'register'),
+    # path('dashboard/',login_required(views.ProfileFill.as_view()),name = 'dashboard')
 ]

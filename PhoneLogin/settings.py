@@ -21,7 +21,7 @@ TEMPLATE_DIR = os.path.join(BASE_DIR,'templates')
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-
+SECRET_KEY = 'django-insecure-02b8y@_x7z628qs4(*yq2@i-e$m(j&1ark2_&%(+t@_4_@@yk('
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'Account',
     # 'twilio.rest'
 ]
@@ -117,7 +118,8 @@ USE_L10N = True
 USE_TZ = True
 
 
-
+TWILIO_SID = 'AC0671392a1cd8a0810484685455798309'
+TWILIO_AUTH = 'dbccdfbfb0f467c098dd8144fb67752a'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 

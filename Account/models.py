@@ -7,7 +7,7 @@ from django.contrib.auth import get_user_model
 class NewUser(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
     otp = models.CharField(max_length=6,null=True,blank=True)
-    phone_number = models.CharField(max_length=10)
+    phone_number = models.CharField(max_length=14)
     uid = models.UUIDField(default=uuid.uuid4())
     
     def __str__(self):
