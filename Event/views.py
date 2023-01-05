@@ -32,7 +32,7 @@ class PatientEventApi(APIView):
                     doc = Profile.objects.get(person = doc)
                     
                     # print(tuple(data.values()))
-                    topic,doctor,start_time,end_time,patient = data.values()
+                    topic,doctor,start_time,end_time,patient,meet_link = data.values()
     
                     if doc.role.lower() == 'doctor':
                         if PatientEvent.objects.filter(topic = topic,doctor = doctor,start_time = start_time,end_time = end_time).exists():\
@@ -89,7 +89,7 @@ class DoctorEventApi(APIView):
                     pat = User.objects.get(username = serializer.validated_data['patient'])
                     pat = NewUser.objects.get(user = pat)
                     pat = Profile.objects.get(person = pat)
-                    topic,patient,start_time,end_time,doctor = data.values()
+                    topic,patient,start_time,end_time,doctor,meet_link = data.values()
                     if pat.role.lower() == 'patient':
                         if DoctorEvent.objects.filter(topic = topic,patient = patient,start_time = start_time,end_time = end_time).exists():
                             return Response({

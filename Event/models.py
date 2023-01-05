@@ -8,6 +8,7 @@ class PatientEvent(models.Model):
     topic = models.CharField(max_length=255,blank=False)
     start_time = models.DateTimeField(max_length=255,blank=False)
     end_time = models.DateTimeField(max_length=255,blank=False)
+    meet_link = models.CharField(max_length=12,blank=True)
     
     def __str__(self):
         return self.topic
@@ -19,6 +20,6 @@ class DoctorEvent(models.Model):
     topic = models.CharField(max_length=255,blank=False)
     start_time = models.DateTimeField(max_length=255,blank=False)
     end_time = models.DateTimeField(max_length=255,blank=False)
-    
+    meet_link = models.CharField(max_length=12,blank=True)
     def __str__(self):
         return self.topic
