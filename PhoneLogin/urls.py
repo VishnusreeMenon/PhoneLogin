@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path
 from Account import views
 from django.contrib.auth.decorators import login_required
 urlpatterns = [
@@ -27,5 +27,6 @@ urlpatterns = [
     path('otp/<uid>/',views.OtpApi.as_view()),
     path('dashboard/',views.ProfileApi.as_view()),
     path('register/',views.RegistrationApi.as_view(),name = 'register'),
+    path('event/',include(('Event.urls','event'),namespace='event')),
     # path('dashboard/',login_required(views.ProfileFill.as_view()),name = 'dashboard')
 ]

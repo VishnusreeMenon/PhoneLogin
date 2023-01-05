@@ -177,7 +177,7 @@ class OtpApi(APIView):
         print(data)
         otp = data['otp']
         user = NewUser.objects.get(uid = uid)
-        # print(type(otp),type(user.otp))
+        print(type(otp),type(user.otp))
         if str(otp) == user.otp:
             print("here")
             login(request,user.user)
