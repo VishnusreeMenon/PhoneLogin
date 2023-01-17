@@ -13,6 +13,7 @@ from .models import PatientEvent,DoctorEvent
 from .serializer import PatientEventSerialser,DoctorEventSerialser
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.models import User
+from .add_calendar import add_cal_event
 # Create your views here.
 
 
@@ -35,13 +36,17 @@ class PatientEventApi(APIView):
                     topic,doctor,start_time,end_time,patient,meet_link = data.values()
     
                     if doc.role.lower() == 'doctor':
-                        if PatientEvent.objects.filter(topic = topic,doctor = doctor,start_time = start_time,end_time = end_time).exists():\
+                        if PatientEvent.objects.filter(topic = topic,doctor = doctor,start_time = start_time,end_time = end_time).exists():
                             return Response({
                             'status':400,
                             'message':"Appointment already exists!",
                             'data' : serializer.errors
                             })
                         serializer.save()
+                        # Add event to calender
+                        print(start_time,end_time)
+                        add_cal_event(topic,doctor,start_time,end_time,meet_link)
+                        
                         return Response(
                             {
                                 'status':200,
@@ -98,7 +103,8 @@ class DoctorEventApi(APIView):
                             'data' : serializer.errors
                             })
                         serializer.save()
-                        
+                        print(start_time,end_time)
+                        add_cal_event(topic,doctor,start_time,end_time,meet_link)
                         return Response(
                             {
                                 'status':200,
